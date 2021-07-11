@@ -17,10 +17,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	int currentState = MENU;
 	Font titleFont;
 	Font subFont;
-	int x = 250;
-	int y = 700;
-	int w = 50;
-	int h = 50;
+	Rocket rocket = new Rocket(250, 700, 50, 50);
+	
+	
 	
 	@Override
 	public void paintComponent(Graphics g){
@@ -70,7 +69,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	 void drawGameState(Graphics g) {
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		 draw(g);
+		 rocket.draw(g);
 	 }
 	 void drawEndState(Graphics g)  {
 		 g.setColor(Color.RED);
@@ -118,23 +117,46 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		    }
 		}
 		
-		if (e.getKeyCode()==KeyEvent.VK_UP) {
+		if (e.getKeyCode()==KeyEvent.VK_UP  && rocket.y>=0) {
 		    System.out.println("UP");
+		    rocket.up();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_DOWN) {
+		if (e.getKeyCode()==KeyEvent.VK_DOWN && rocket.y<=800) {
 		    System.out.println("down");
+		    rocket.down();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_LEFT) {
+		if (e.getKeyCode()==KeyEvent.VK_LEFT && rocket.x>=0) {
 		    System.out.println("left");
+		    rocket.left();
 		}
-		if (e.getKeyCode()==KeyEvent.VK_RIGHT) {
+		if (e.getKeyCode()==KeyEvent.VK_RIGHT && rocket.x <= 500) {
 		    System.out.println("right");
+		    rocket.right();
 		}
+		
+		
+		
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		if (e.getKeyCode()==KeyEvent.VK_UP  && rocket.y>=0) {
+		    System.out.println("UP");
+		    rocket.up();
+		}
+		if (e.getKeyCode()==KeyEvent.VK_DOWN && rocket.y<=800) {
+		    System.out.println("down");
+		    rocket.down();
+		}
+		if (e.getKeyCode()==KeyEvent.VK_LEFT && rocket.x>=0) {
+		    System.out.println("left");
+		    rocket.left();
+		}
+		if (e.getKeyCode()==KeyEvent.VK_RIGHT && rocket.x <= 500) {
+		    System.out.println("right");
+		    rocket.right();
+		}
 	}
+	
 }
