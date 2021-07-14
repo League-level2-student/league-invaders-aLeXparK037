@@ -5,7 +5,7 @@ public class GameObject {
 	 int width;
 	 int height;
 	 int speed = 0;
-	 boolean isACtive = true;
+	 boolean isActive = true;
 	 GameObject(int x, int y, int w, int h){
 		 this.x = x;
 		 this.y = y;

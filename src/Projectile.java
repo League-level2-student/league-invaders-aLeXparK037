@@ -8,7 +8,7 @@ public class Projectile extends GameObject {
 		// TODO Auto-generated constructor stub
 		speed = 10;
 	}
-void updates() {
+public void update() {
 	y-=speed;
 }
 void draw(Graphics g) {

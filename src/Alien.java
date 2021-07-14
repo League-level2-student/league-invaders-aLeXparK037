@@ -8,7 +8,7 @@ public class Alien extends GameObject {
 		// TODO Auto-generated constructor stub
 		speed=1;
 	}
-void updates() {
+public void update() {
 	y+=speed;
 }
 void draw(Graphics g) {
