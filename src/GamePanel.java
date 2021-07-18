@@ -18,6 +18,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	Font titleFont;
 	Font subFont;
 	Rocket rocket = new Rocket(250, 700, 50, 50);
+	ObjectManager object = new ObjectManager(rocket);
+	Timer alienSpawn;
 	
 	
 	
@@ -47,7 +49,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		
 	 }
 	void updateGameState() {
-		
+		object.update();
 	}
 	void updateEndState()  {  
 		
@@ -69,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	 void drawGameState(Graphics g) {
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
-		 rocket.draw(g);
+		 object.draw(g);
 	 }
 	 void drawEndState(Graphics g)  {
 		 g.setColor(Color.RED);
@@ -84,6 +86,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		 g.drawString("pess ENTER to restart", 125, 650);
 
 		 
+	 }
+	 
+	 void startGame (){
+		 alienSpawn = new Timer(1000, object);
+		 alienSpawn.start();
 	 }
 
 	@Override
@@ -114,7 +121,17 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		        currentState = MENU;
 		    } else {
 		        currentState++;
+		        if (currentState == GAME) {
+		        	startGame();
+		        	if (e.getKeyCode()==KeyEvent.VK_SPACE) {
+		        		object.addProjectile(rocket.getProjectile());
+		        	}
+		        }
+		        if (currentState == END) {
+		        	alienSpawn.stop();
+		        }
 		    }
+		    
 		}
 		
 		if (e.getKeyCode()==KeyEvent.VK_UP  && rocket.y>=0) {
