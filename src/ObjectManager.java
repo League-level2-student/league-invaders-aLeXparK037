@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ObjectManager implements ActionListener{
+public class ObjectManager implements ActionListener {
 
 	Rocket rocket;
 
@@ -41,8 +41,11 @@ public class ObjectManager implements ActionListener{
 					proj.get(b).isActive = false;
 				}
 			}
+			checkCollision();
+			purgeObjects();
 
 		}
+
 	}
 
 	void draw(Graphics g) {
@@ -59,6 +62,7 @@ public class ObjectManager implements ActionListener{
 		}
 
 	}
+
 	void purgeObjects() {
 		for (int i = 0; i < aliens.size(); i++) {
 			if (aliens.get(i).isActive == false) {
@@ -72,10 +76,24 @@ public class ObjectManager implements ActionListener{
 			}
 
 		}
-		
+
 	}
-	
-	
+
+	void checkCollision() {
+		for (int i = 0; i < aliens.size(); i++) {
+			if (rocket.collisionBox.intersects(aliens.get(i).collisionBox)) {
+				aliens.get(i).isActive = false;
+				rocket.isActive = false;
+			}
+			for (int b = 0; b < proj.size(); b++) {
+				if (aliens.get(i).collisionBox.intersects(proj.get(b).collisionBox)) {
+					aliens.get(i).isActive = false;
+
+				}
+			}
+		}
+
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
