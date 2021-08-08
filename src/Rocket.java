@@ -12,6 +12,7 @@ public class Rocket extends GameObject{
 	void draw(Graphics g) {
         g.setColor(Color.BLUE);
         g.fillRect(x, y, width, height);
+        g.drawRect(collisionBox.x, collisionBox.y, collisionBox.width, collisionBox.height);
 	}
 public void left() {
 	x-=speed;
