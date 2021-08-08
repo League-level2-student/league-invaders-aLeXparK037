@@ -13,6 +13,13 @@ public class ObjectManager implements ActionListener {
 	ArrayList<Projectile> proj = new ArrayList<Projectile>();
 
 	Random random = new Random();
+	
+	int score = 0;
+	
+	public int getScore() {
+		return score;
+		
+	}
 
 	ObjectManager(Rocket a) {
 		this.rocket = a;
@@ -29,6 +36,7 @@ public class ObjectManager implements ActionListener {
 	}
 
 	void update() {
+		rocket.update();
 		for (int i = 0; i < aliens.size(); i++) {
 			aliens.get(i).update();
 			if (aliens.get(i).y > LeagueInvaders.HEIGHT) {
@@ -39,6 +47,7 @@ public class ObjectManager implements ActionListener {
 				proj.get(b).update();
 				if (proj.get(b).y > LeagueInvaders.HEIGHT) {
 					proj.get(b).isActive = false;
+					
 				}
 			}
 			checkCollision();
@@ -84,11 +93,12 @@ public class ObjectManager implements ActionListener {
 			if (rocket.collisionBox.intersects(aliens.get(i).collisionBox)) {
 				aliens.get(i).isActive = false;
 				rocket.isActive = false;
-				System.out.println("rocket dead");
+				System.out.println("rocket ded");
 			}
 			for (int b = 0; b < proj.size(); b++) {
 				if (aliens.get(i).collisionBox.intersects(proj.get(b).collisionBox)) {
 					aliens.get(i).isActive = false;
+					score += 1;
 
 				}
 			}

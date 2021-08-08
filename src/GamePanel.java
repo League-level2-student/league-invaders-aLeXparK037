@@ -23,6 +23,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 	
 	
 	
+	
 	@Override
 	public void paintComponent(Graphics g){
 		g.fillRect(10, 10, 100, 100);
@@ -41,8 +42,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		   subFont = new Font("Arial", Font.PLAIN, 18);
 		   frameDraw = new Timer(1000/60, this);
 		   frameDraw.start();
-
-
+		   
 	}
 	
 	 void updateMenuState() {
@@ -75,6 +75,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener{
 		 g.setColor(Color.BLACK);
 		 g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 		 object.draw(g);
+		 g.drawString("score: "+ object.getScore() , 50, 50);
+		 
 	 }
 	 void drawEndState(Graphics g)  {
 		 g.setColor(Color.RED);
