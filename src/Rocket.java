@@ -6,7 +6,7 @@ public class Rocket extends GameObject{
 	Rocket(int x, int y, int w, int h) {
 		super(x, y, w, h);
 		// TODO Auto-generated constructor stub
-		speed = 10;
+		speed = 15;
 		
 	}
 	void draw(Graphics g) {
